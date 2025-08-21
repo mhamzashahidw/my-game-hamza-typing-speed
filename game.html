@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Speed Challenge</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+
+     <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #f4f4f4;
+            margin-top: 50px;
+        }
+        #word {
+            font-size: 2em;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        #input {
+            padding: 10px;
+            font-size: 1.2em;
+            width: 200px;
+            text-align: center;
+        }
+        #score, #timer {
+            font-size: 1.2em;
+            margin: 10px;
+        }
+        #start-btn {
+            padding: 10px 20px;
+            font-size: 1em;
+            background: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #start-btn:hover {
+            background: darkgreen;
+        }
+    </style>
+</head>
+<body>
+    
+<h1 class="animate__animated animate__rubberBand">Typing Speed Challenge</h1>
+    <div id="score">Score: 0</div>
+    <div id="timer">Time: 30s</div>
+    <div id="word">Press Start</div>
+    <input type="text" id="input" disabled>
+    <br><br>
+    <button id="start-btn">Start Game</button>
+<script src="practice.js"></script>
+<script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+    <script>
+ Swal.fire({
+  title: "<strong>Hi <u>Students</u></strong>",
+  icon: "info",
+  html: `
+    How are you <b>Students</b>,
+    are you ready for Challenge.
+  `,
+  showCloseButton: true,
+  showCancelButton: true,
+  focusConfirm: false,
+  confirmButtonText: `
+    <i class="fa fa-thumbs-up"></i> Yes!
+  `,
+  confirmButtonAriaLabel: "Thumbs up, great!",
+  
+
+
+  
+});
+
+
+
+
+
+
+
+
+
+        $(document).ready(function(){
+            let words = [
+                "apple", "banana", "orange", "grape", "cherry", "melon",
+                "keyboard", "javascript", "jquery", "challenge", "speed",
+                "programming", "website", "coding", "developer", "browser"
+            ];
+            let score = 0;
+            let timeLeft = 30;
+            let timerInterval;
+
+            function getRandomWord() {
+                return words[Math.floor(Math.random() * words.length)];
+            }
+
+            function startGame() {
+                score = 0;
+                timeLeft = 30;
+                $("#score").text("Score: " + score);
+                $("#timer").text("Time: " + timeLeft + "s");
+                $("#input").prop("disabled", false).val("").focus();
+                $("#word").text(getRandomWord());
+
+                clearInterval(timerInterval);
+                timerInterval = setInterval(function(){
+                    timeLeft--;
+                    $("#timer").text("Time: " + timeLeft + "s");
+                    if(timeLeft <= 0) {
+                        clearInterval(timerInterval);
+                        $("#input").prop("disabled", true);
+                        alert("Time's up! Your score: " + score);
+                    }
+                }, 1000);
+            }
+
+            $("#start-btn").click(startGame);
+
+            $("#input").on("keydown", function(e){
+                if(e.key === "Enter"){
+                    let typed = $("#input").val().trim().toLowerCase();
+                    let currentWord = $("#word").text().toLowerCase();
+                    if(typed === currentWord){
+                        score++;
+                        $("#score").text("Score: " + score);
+                        $("#word").text(getRandomWord());
+                        $("#input").val("");
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

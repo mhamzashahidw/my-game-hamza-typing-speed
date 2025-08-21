@@ -27,6 +27,4 @@ You get **30 seconds** to type as many words as possible — your score is track
 - Press **Start Game** and begin typing to increase your score.
 - The timer counts down from 30 seconds.
 
----
 
-## 📂 Project Structure

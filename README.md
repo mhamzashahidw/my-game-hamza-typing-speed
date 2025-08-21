@@ -16,10 +16,6 @@ You get **30 seconds** to type as many words as possible — your score is track
 
 ---
 
-## 📸 Screenshot
-![Typing Speed Game](screenshot.png)
-
----
 
 ## 🛠️ How It Works
 - Built with **HTML, CSS, JavaScript, and jQuery**.
